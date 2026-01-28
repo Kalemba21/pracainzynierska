@@ -1,0 +1,24 @@
+{
+  "name": "stock-sim-backend",
+  "version": "1.0.0",
+  "description": "Backend do symulatora gry na giełdzie (proxy do Finnhub)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "node --test --test-reporter=spec test/*.test.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "jest-html-reporters": "^3.1.7"
+  }
+}

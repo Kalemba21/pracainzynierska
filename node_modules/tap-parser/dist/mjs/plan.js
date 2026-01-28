@@ -1,0 +1,11 @@
+export class Plan {
+    start;
+    end;
+    comment;
+    constructor(start, end, comment = '') {
+        this.start = start;
+        this.end = end;
+        this.comment = comment;
+    }
+}
+//# sourceMappingURL=plan.js.map

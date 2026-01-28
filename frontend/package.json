@@ -1,0 +1,28 @@
+{
+  "name": "stock-sim-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+
+    "test": "node --test --test-reporter=spec test/*.test.js",
+
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui",
+    "e2e:report": "playwright show-report",
+
+    "postinstall": "playwright install --with-deps"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^7.2.2"
+  }
+}

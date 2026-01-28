@@ -1,0 +1,554 @@
+{
+  "mcd": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 11,
+      "result": [
+        {
+          "description": "MCDONALD'S CORP",
+          "displaySymbol": "MCD",
+          "symbol": "MCD",
+          "type": "Common Stock"
+        },
+        {
+          "description": "MCDONALD'S CORP",
+          "displaySymbol": "MCD.BC",
+          "symbol": "MCD.BC",
+          "type": "Common Stock"
+        },
+        {
+          "description": "MCDONALD'S CORP",
+          "displaySymbol": "MCD.MX",
+          "symbol": "MCD.MX",
+          "type": "Common Stock"
+        },
+        {
+          "description": "MCDONALD'S CORP",
+          "displaySymbol": "MCD.RO",
+          "symbol": "MCD.RO",
+          "type": "Common Stock"
+        },
+        {
+          "description": "MCDONALD'S CORP",
+          "displaySymbol": "MCD.SN",
+          "symbol": "MCD.SN",
+          "type": "Common Stock"
+        },
+        {
+          "description": "MCDONALD'S CORP",
+          "displaySymbol": "MCD.VI",
+          "symbol": "MCD.VI",
+          "type": "Common Stock"
+        },
+        {
+          "description": "MYCODERN SA",
+          "displaySymbol": "MCD.WA",
+          "symbol": "MCD.WA",
+          "type": "Common Stock"
+        },
+        {
+          "description": "McDonald's Corp",
+          "displaySymbol": "MCD",
+          "symbol": "MCD",
+          "type": "Common Stock"
+        },
+        {
+          "description": "IMCD NV",
+          "displaySymbol": "IMCD.AS",
+          "symbol": "IMCD.AS",
+          "type": "Common Stock"
+        },
+        {
+          "description": "McDonald's Holdings Company Japan Ltd",
+          "displaySymbol": "2702.T",
+          "symbol": "2702.T",
+          "type": "Common Stock"
+        },
+        {
+          "description": "McDermott International Ltd",
+          "displaySymbol": "MCDIF",
+          "symbol": "MCDIF",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "aapl": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 9,
+      "result": [
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL",
+          "symbol": "AAPL",
+          "type": "Common Stock"
+        },
+        {
+          "description": "APPLE INC-CDR",
+          "displaySymbol": "AAPL.TO",
+          "symbol": "AAPL.TO",
+          "type": "Canadian DR"
+        },
+        {
+          "description": "APPLE INC-CDR",
+          "displaySymbol": "AAPL.NE",
+          "symbol": "AAPL.NE",
+          "type": "Canadian DR"
+        },
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL.BC",
+          "symbol": "AAPL.BC",
+          "type": "Common Stock"
+        },
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL.MX",
+          "symbol": "AAPL.MX",
+          "type": "Common Stock"
+        },
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL.RO",
+          "symbol": "AAPL.RO",
+          "type": "Common Stock"
+        },
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL.SN",
+          "symbol": "AAPL.SN",
+          "type": "Common Stock"
+        },
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL.VI",
+          "symbol": "AAPL.VI",
+          "type": "Common Stock"
+        },
+        {
+          "description": "APPLE INC",
+          "displaySymbol": "AAPL.WA",
+          "symbol": "AAPL.WA",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "tesla": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 3,
+      "result": [
+        {
+          "description": "Tesla Inc",
+          "displaySymbol": "TSLA",
+          "symbol": "TSLA",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tesla Energy Storage ED",
+          "displaySymbol": "TES.MC",
+          "symbol": "TES.MC",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tesla Exploration Ltd",
+          "displaySymbol": "TXLZF",
+          "symbol": "TXLZF",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "ten": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 12,
+      "result": [
+        {
+          "description": "TSAKOS ENERGY NAVIGATION LTD",
+          "displaySymbol": "TEN",
+          "symbol": "TEN",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.DE",
+          "symbol": "TEN.DE",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.BE",
+          "symbol": "TEN.BE",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.DU",
+          "symbol": "TEN.DU",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.F",
+          "symbol": "TEN.F",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tecan Group AG",
+          "displaySymbol": "TEN.HM",
+          "symbol": "TEN.HM",
+          "type": ""
+        },
+        {
+          "description": "TENARIS SA",
+          "displaySymbol": "TEN.MI",
+          "symbol": "TEN.MI",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.MU",
+          "symbol": "TEN.MU",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.SG",
+          "symbol": "TEN.SG",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TENARIS SA",
+          "displaySymbol": "TEN.VI",
+          "symbol": "TEN.VI",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TEN SQUARE GAMES SA",
+          "displaySymbol": "TEN.WA",
+          "symbol": "TEN.WA",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TECAN GROUP AG-REG",
+          "displaySymbol": "TEN.TG",
+          "symbol": "TEN.TG",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "tenc": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 4,
+      "result": [
+        {
+          "description": "Tencent Holdings Ltd",
+          "displaySymbol": "700.HK",
+          "symbol": "700.HK",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tencent Music Entertainment Group",
+          "displaySymbol": "TME",
+          "symbol": "TME",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Persistence Resources Group Ltd",
+          "displaySymbol": "2489.HK",
+          "symbol": "2489.HK",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tokyo Rakutenchi Co Ltd",
+          "displaySymbol": "8842.T",
+          "symbol": "8842.T",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "tes": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 11,
+      "result": [
+        {
+          "description": "TESORO MINERALS CORP",
+          "displaySymbol": "TES.V",
+          "symbol": "TES.V",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TESORO MINERALS CORP",
+          "displaySymbol": "TES.NE",
+          "symbol": "TES.NE",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Thames Water Utilities Finance Plc",
+          "displaySymbol": "TES.L",
+          "symbol": "TES.L",
+          "type": ""
+        },
+        {
+          "description": "",
+          "displaySymbol": "TES.DU",
+          "symbol": "TES.DU",
+          "type": ""
+        },
+        {
+          "description": "",
+          "displaySymbol": "TES.HM",
+          "symbol": "TES.HM",
+          "type": ""
+        },
+        {
+          "description": "TESLA ENERGY STORAGE SE",
+          "displaySymbol": "TES.MC",
+          "symbol": "TES.MC",
+          "type": "Common Stock"
+        },
+        {
+          "description": "TESMEC SPA",
+          "displaySymbol": "TES.MI",
+          "symbol": "TES.MI",
+          "type": "Common Stock"
+        },
+        {
+          "description": "",
+          "displaySymbol": "TES.MU",
+          "symbol": "TES.MU",
+          "type": ""
+        },
+        {
+          "description": "",
+          "displaySymbol": "TES.HA",
+          "symbol": "TES.HA",
+          "type": ""
+        },
+        {
+          "description": "Tesla Inc",
+          "displaySymbol": "TSLA",
+          "symbol": "TSLA",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Intesa Sanpaolo SpA",
+          "displaySymbol": "ISP.MI",
+          "symbol": "ISP.MI",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "tence": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 3,
+      "result": [
+        {
+          "description": "Tencent Holdings Ltd",
+          "displaySymbol": "700.HK",
+          "symbol": "700.HK",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tencent Music Entertainment Group",
+          "displaySymbol": "TME",
+          "symbol": "TME",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Persistence Resources Group Ltd",
+          "displaySymbol": "2489.HK",
+          "symbol": "2489.HK",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "micro": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 11,
+      "result": [
+        {
+          "description": "MICRO LEASING PCL",
+          "displaySymbol": "MICRO.BK",
+          "symbol": "MICRO.BK",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Microsoft Corp",
+          "displaySymbol": "MSFT",
+          "symbol": "MSFT",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Advanced Micro Devices Inc",
+          "displaySymbol": "AMD",
+          "symbol": "AMD",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Micron Technology Inc",
+          "displaySymbol": "MU",
+          "symbol": "MU",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Microchip Technology Inc",
+          "displaySymbol": "MCHP",
+          "symbol": "MCHP",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Advanced Micro-Fabrication Equipment Inc China",
+          "displaySymbol": "688012.SS",
+          "symbol": "688012.SS",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Super Micro Computer Inc",
+          "displaySymbol": "SMCI",
+          "symbol": "SMCI",
+          "type": "Common Stock"
+        },
+        {
+          "description": "STMicroelectronics NV",
+          "displaySymbol": "STMPA.PA",
+          "symbol": "STMPA.PA",
+          "type": "Common Stock"
+        },
+        {
+          "description": "United Microelectronics Corp",
+          "displaySymbol": "2303.TW",
+          "symbol": "2303.TW",
+          "type": "Common Stock"
+        },
+        {
+          "description": "VeriSilicon Microelectronics Shanghai Co Ltd",
+          "displaySymbol": "688521.SS",
+          "symbol": "688521.SS",
+          "type": "Common Stock"
+        },
+        {
+          "description": "China Resources Microelectronics Ltd",
+          "displaySymbol": "688396.SS",
+          "symbol": "688396.SS",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "tencen": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 2,
+      "result": [
+        {
+          "description": "Tencent Holdings Ltd",
+          "displaySymbol": "700.HK",
+          "symbol": "700.HK",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Tencent Music Entertainment Group",
+          "displaySymbol": "TME",
+          "symbol": "TME",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  },
+  "da": {
+    "date": "2025-11-16",
+    "data": {
+      "count": 11,
+      "result": [
+        {
+          "description": "Royal Bank of Canada",
+          "displaySymbol": "RY.TO",
+          "symbol": "RY.TO",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Danaher Corp",
+          "displaySymbol": "DHR",
+          "symbol": "DHR",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Automatic Data Processing Inc",
+          "displaySymbol": "ADP",
+          "symbol": "ADP",
+          "type": "Common Stock"
+        },
+        {
+          "description": "DoorDash Inc",
+          "displaySymbol": "DASH",
+          "symbol": "DASH",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Datadog Inc",
+          "displaySymbol": "DDOG",
+          "symbol": "DDOG",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Workday Inc",
+          "displaySymbol": "WDAY",
+          "symbol": "WDAY",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Danone SA",
+          "displaySymbol": "BN.PA",
+          "symbol": "BN.PA",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Nasdaq Inc",
+          "displaySymbol": "NDAQ",
+          "symbol": "NDAQ",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Standard Chartered PLC",
+          "displaySymbol": "STAN.L",
+          "symbol": "STAN.L",
+          "type": "Common Stock"
+        },
+        {
+          "description": "Hyundai Motor Co",
+          "displaySymbol": "005380.KS",
+          "symbol": "005380.KS",
+          "type": "Common Stock"
+        },
+        {
+          "description": "National Bank of Canada",
+          "displaySymbol": "NA.TO",
+          "symbol": "NA.TO",
+          "type": "Common Stock"
+        }
+      ],
+      "cache": false
+    }
+  }
+}

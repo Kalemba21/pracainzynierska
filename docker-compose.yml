@@ -1,0 +1,62 @@
+services:
+  db:
+    image: postgres:16
+    container_name: local_postgres
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/sql/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d appdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    image: stock_sim_backend_dev
+    container_name: stock_sim_backend
+    working_dir: /app
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      PORT: "4000"
+      DB_MODE: "local"
+      LOCAL_DATABASE_URL: "postgres://app:app@db:5432/appdb"
+      JWT_SECRET: "jak_to_czytasz_pozdrawiam"
+      FINNHUB_API_KEY: "d4bk0qhr01qoua305g60d4bk0qhr01qoua305g6g"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run dev -- --host
+    ports:
+      - "4000:4000"
+
+  frontend:
+    image: stock_sim_frontend_dev
+    container_name: stock_sim_frontend
+    working_dir: /app
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host
+    ports:
+      - "5173:5173"
+
+volumes:
+  pgdata:

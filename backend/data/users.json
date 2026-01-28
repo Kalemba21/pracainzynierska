@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1fa67d3e-58c0-46f2-855d-01a6e1be89fe",
+    "email": "test@test.pl",
+    "username": "test",
+    "passwordHash": "$2b$10$.WjgBXHXQyI2VVDeEZM2OeugHvzbgY0.nLsMdrdDCVkqtGDfwCVeC",
+    "createdAt": "2025-11-15T02:08:29.409Z"
+  },
+  {
+    "id": "12556fd6-bbee-4b1a-90c5-8927c135386f",
+    "email": "test1@test.pl",
+    "username": "testowyjanek",
+    "passwordHash": "$2b$10$yf6xy1lGLdcFG1YqFeYjz.owTX7h2WvSkHPvnxo0Ztkg4/Q1q51wG",
+    "createdAt": "2025-11-15T02:32:43.617Z"
+  }
+]
