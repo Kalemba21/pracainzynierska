@@ -361,9 +361,9 @@ function Game() {
 
     const selectedUnrealizedPct =
         selectedUnrealizedPnl != null &&
-        selectedStats &&
-        selectedStats.avgBuyPrice &&
-        (selectedStats.position ?? sharesForSelected) > 0
+            selectedStats &&
+            selectedStats.avgBuyPrice &&
+            (selectedStats.position ?? sharesForSelected) > 0
             ? (selectedUnrealizedPnl /
                 ((selectedStats.position || sharesForSelected) * selectedStats.avgBuyPrice)) *
             100
@@ -766,12 +766,27 @@ function Game() {
             setMessage("🔥 Brawo! Osiągnąłeś wyznaczony cel kapitałowy dla całego portfela.");
         } else {
             const sumShares = Object.values(nextPositions).reduce((acc, q) => acc + (q || 0), 0);
+
+            // Sprawdź czy gracz może kupić choćby jedną akcję którejkolwiek spółki
+            const availablePrices = Object.values(priceMap).filter(
+                (p) => Number.isFinite(p) && p > 0
+            );
+            const minPrice = availablePrices.length > 0 ? Math.min(...availablePrices) : 0;
+            const canAffordAnyShare = nextCash >= minPrice && minPrice > 0;
+
             if (total < 1 && sumShares === 0) {
                 setStatus("lost");
                 setMessage("💀 Kapitał wyzerowany i brak jakichkolwiek akcji w portfelu – gra przegrana.");
+            } else if (sumShares === 0 && !canAffordAnyShare && nextCash < minPrice) {
+                // Gracz nie ma żadnych akcji i nie stać go na najtańszą spółkę
+                setStatus("lost");
+                setMessage(
+                    `💀 Przegrana! Nie posiadasz żadnych akcji, a Twój kapitał (${formatMoney(nextCash)} PLN) nie wystarcza na zakup nawet jednej akcji najtańszej spółki (${formatMoney(minPrice)} PLN).`
+                );
             }
         }
     }
+
 
     function handleBuy() {
         if (!ensurePlaying()) return;
@@ -1754,7 +1769,7 @@ function Game() {
                                 </div>
                             )}
 
-                            {}
+                            { }
                             <GameQuickSummary
                                 open={quickOpen}
                                 onOpen={() => setQuickOpen(true)}
@@ -1779,33 +1794,33 @@ function Game() {
                             <div className="admin-users-table-wrapper">
                                 <table className="admin-users-table" style={{ fontSize: "0.78rem" }}>
                                     <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Dzień</th>
-                                        <th>Spółka</th>
-                                        <th>Strona</th>
-                                        <th>Ilość</th>
-                                        <th>Cena</th>
-                                        <th>Wartość</th>
-                                        <th>Gotówka po</th>
-                                    </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Dzień</th>
+                                            <th>Spółka</th>
+                                            <th>Strona</th>
+                                            <th>Ilość</th>
+                                            <th>Cena</th>
+                                            <th>Wartość</th>
+                                            <th>Gotówka po</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    {trades.map((t) => (
-                                        <tr
-                                            key={t.id}
-                                            className={t.side === "BUY" ? "trade-row trade-row-buy" : "trade-row trade-row-sell"}
-                                        >
-                                            <td>{t.id}</td>
-                                            <td>{t.day}</td>
-                                            <td>{t.symbol.toUpperCase()}</td>
-                                            <td>{t.side === "BUY" ? "Kupno" : "Sprzedaż"}</td>
-                                            <td>{t.qty}</td>
-                                            <td>{formatMoney(t.price)}</td>
-                                            <td>{formatMoney(t.value)}</td>
-                                            <td>{formatMoney(t.cashAfter)}</td>
-                                        </tr>
-                                    ))}
+                                        {trades.map((t) => (
+                                            <tr
+                                                key={t.id}
+                                                className={t.side === "BUY" ? "trade-row trade-row-buy" : "trade-row trade-row-sell"}
+                                            >
+                                                <td>{t.id}</td>
+                                                <td>{t.day}</td>
+                                                <td>{t.symbol.toUpperCase()}</td>
+                                                <td>{t.side === "BUY" ? "Kupno" : "Sprzedaż"}</td>
+                                                <td>{t.qty}</td>
+                                                <td>{formatMoney(t.price)}</td>
+                                                <td>{formatMoney(t.value)}</td>
+                                                <td>{formatMoney(t.cashAfter)}</td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
@@ -1818,37 +1833,37 @@ function Game() {
                             <div className="admin-users-table-wrapper" style={{ marginTop: "0.35rem", maxHeight: "140px" }}>
                                 <table className="admin-users-table" style={{ fontSize: "0.78rem" }}>
                                     <thead>
-                                    <tr>
-                                        <th>Dzień</th>
-                                        <th>Spółka</th>
-                                        <th>Event</th>
-                                        <th>Wpływ</th>
-                                        <th>Cena przed → po</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Dzień</th>
+                                            <th>Spółka</th>
+                                            <th>Event</th>
+                                            <th>Wpływ</th>
+                                            <th>Cena przed → po</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    {eventHistory.map((e, idx) => {
-                                        const rowClass =
-                                            e.impactPct === 0
-                                                ? "event-row event-row-neutral"
-                                                : e.impactPct > 0
-                                                    ? "event-row event-row-positive"
-                                                    : "event-row event-row-negative";
-                                        return (
-                                            <tr key={`${e.day}-${e.symbol}-${idx}`} className={rowClass}>
-                                                <td>{e.day}</td>
-                                                <td>{e.symbol.toUpperCase()}</td>
-                                                <td>{e.label}</td>
-                                                <td>
-                                                    {e.impactPct > 0 ? "+" : ""}
-                                                    {e.impactPct.toFixed(1)}%
-                                                </td>
-                                                <td>
-                                                    {formatMoney(e.priceBefore)} → {formatMoney(e.priceAfter)}
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
+                                        {eventHistory.map((e, idx) => {
+                                            const rowClass =
+                                                e.impactPct === 0
+                                                    ? "event-row event-row-neutral"
+                                                    : e.impactPct > 0
+                                                        ? "event-row event-row-positive"
+                                                        : "event-row event-row-negative";
+                                            return (
+                                                <tr key={`${e.day}-${e.symbol}-${idx}`} className={rowClass}>
+                                                    <td>{e.day}</td>
+                                                    <td>{e.symbol.toUpperCase()}</td>
+                                                    <td>{e.label}</td>
+                                                    <td>
+                                                        {e.impactPct > 0 ? "+" : ""}
+                                                        {e.impactPct.toFixed(1)}%
+                                                    </td>
+                                                    <td>
+                                                        {formatMoney(e.priceBefore)} → {formatMoney(e.priceAfter)}
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
                                 </table>
                             </div>
@@ -1865,62 +1880,78 @@ function Game() {
                             <div className="portfolio" style={{ marginTop: "0.4rem" }}>
                                 <table>
                                     <thead>
-                                    <tr>
-                                        <th>Spółka</th>
-                                        <th>Ilość</th>
-                                        <th>Śr. cena zakupu</th>
-                                        <th>Cena rynkowa</th>
-                                        <th>Wartość pozycji</th>
-                                        <th>Niezreal. P/L</th>
-                                        <th>Akcja</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Spółka</th>
+                                            <th>Ilość</th>
+                                            <th>Śr. cena zakupu</th>
+                                            <th>Cena rynkowa</th>
+                                            <th>Wartość pozycji</th>
+                                            <th>Niezreal. P/L</th>
+                                            <th>Akcja</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    {holdings.map(([sym, qty]) => {
-                                        const p = prices[sym];
-                                        const stats = symbolStatsMap[sym];
-                                        const avg = stats && stats.avgBuyPrice ? stats.avgBuyPrice : null;
-                                        const positionValue = Number.isFinite(p) && qty > 0 ? qty * p : null;
-                                        const unrealized = avg != null && Number.isFinite(p) && qty > 0 ? qty * (p - avg) : null;
-                                        const unrealizedPct =
-                                            unrealized != null && avg > 0 && qty > 0 ? (unrealized / (qty * avg)) * 100 : null;
+                                        {holdings.map(([sym, qty]) => {
+                                            const p = prices[sym];
+                                            const stats = symbolStatsMap[sym];
+                                            const avg = stats && stats.avgBuyPrice ? stats.avgBuyPrice : null;
+                                            const positionValue = Number.isFinite(p) && qty > 0 ? qty * p : null;
+                                            const unrealized = avg != null && Number.isFinite(p) && qty > 0 ? qty * (p - avg) : null;
+                                            const unrealizedPct =
+                                                unrealized != null && avg > 0 && qty > 0 ? (unrealized / (qty * avg)) * 100 : null;
 
-                                        return (
-                                            <tr key={sym}>
-                                                <td>{sym.toUpperCase()}</td>
-                                                <td>{qty}</td>
-                                                <td>{avg != null ? `${formatMoney(avg)} PLN` : "-"}</td>
-                                                <td>{Number.isFinite(p) ? `${formatMoney(p)} PLN` : "-"}</td>
-                                                <td>{positionValue != null ? `${formatMoney(positionValue)} PLN` : "-"}</td>
-                                                <td
-                                                    style={{
-                                                        color:
-                                                            unrealized == null ? "#e5e7eb" : unrealized >= 0 ? "#22c55e" : "#ef4444",
-                                                        whiteSpace: "nowrap",
-                                                    }}
-                                                >
-                                                    {unrealized != null
-                                                        ? `${formatMoney(unrealized)} PLN${
-                                                            unrealizedPct != null
+                                            return (
+                                                <tr key={sym}>
+                                                    <td>{sym.toUpperCase()}</td>
+                                                    <td>{qty}</td>
+                                                    <td>{avg != null ? `${formatMoney(avg)} PLN` : "-"}</td>
+                                                    <td>{Number.isFinite(p) ? `${formatMoney(p)} PLN` : "-"}</td>
+                                                    <td>{positionValue != null ? `${formatMoney(positionValue)} PLN` : "-"}</td>
+                                                    <td
+                                                        style={{
+                                                            color:
+                                                                unrealized == null ? "#e5e7eb" : unrealized >= 0 ? "#22c55e" : "#ef4444",
+                                                            whiteSpace: "nowrap",
+                                                        }}
+                                                    >
+                                                        {unrealized != null
+                                                            ? `${formatMoney(unrealized)} PLN${unrealizedPct != null
                                                                 ? ` (${unrealizedPct >= 0 ? "+" : ""}${unrealizedPct.toFixed(2)}%)`
                                                                 : ""
-                                                        }`
-                                                        : "-"}
-                                                </td>
-                                                <td>
-                                                    <button
-                                                        type="button"
-                                                        className="game-prefix-btn"
-                                                        onClick={() => handleSellAllSelected(sym)}
-                                                    >
-                                                        Sprzedaj
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
+                                                            }`
+                                                            : "-"}
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            type="button"
+                                                            className="game-prefix-btn"
+                                                            onClick={() => handleSellAllSelected(sym)}
+                                                        >
+                                                            Sprzedaj
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
                                 </table>
+
+                                <div style={{ marginTop: "0.75rem", padding: "0.75rem", backgroundColor: "transparent", background: "radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.94))", borderRadius: "0.8rem", border: "1px solid rgba(34, 197, 94, 0.6)" }}>
+                                    <p style={{ margin: 0, fontSize: "0.9rem", fontWeight: "600", color: "#e5e7eb" }}>
+                                        Całkowita wartość kupionych akcji: <strong style={{ color: "#22c55e", fontSize: "1.05rem" }}>
+                                            {(() => {
+                                                const totalPortfolioValue = holdings.reduce((sum, [sym, qty]) => {
+                                                    const p = prices[sym];
+                                                    if (Number.isFinite(p) && qty > 0) {
+                                                        return sum + (qty * p);
+                                                    }
+                                                    return sum;
+                                                }, 0);
+                                                return `${formatMoney(totalPortfolioValue)} PLN`;
+                                            })()}
+                                        </strong>
+                                    </p>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -2024,10 +2055,9 @@ function Game() {
                                 }}
                             >
                                 {endSummary.pnl != null
-                                    ? `${formatMoney(endSummary.pnl)} PLN${
-                                        endSummary.pnlPct != null
-                                            ? ` (${endSummary.pnlPct >= 0 ? "+" : ""}${endSummary.pnlPct.toFixed(2)}%)`
-                                            : ""
+                                    ? `${formatMoney(endSummary.pnl)} PLN${endSummary.pnlPct != null
+                                        ? ` (${endSummary.pnlPct >= 0 ? "+" : ""}${endSummary.pnlPct.toFixed(2)}%)`
+                                        : ""
                                     }`
                                     : "-"}
                             </strong>

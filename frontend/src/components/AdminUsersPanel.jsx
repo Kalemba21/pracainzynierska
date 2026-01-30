@@ -286,6 +286,10 @@ function AdminUsersPanel() {
         }
     };
 
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
     const handleAddUser = async (e) => {
         e.preventDefault();
         if (!token) return setModalErr("Brak tokenu – zaloguj się ponownie.");
@@ -293,8 +297,9 @@ function AdminUsersPanel() {
         const email = newEmail.trim();
         const password = newPass;
 
-        if (!email.includes("@")) return setModalErr("Podaj poprawny email");
-        if (password.length < 6) return setModalErr("Hasło musi mieć min. 6 znaków");
+        if (!email) return setModalErr("Adres email jest wymagany.");
+        if (!isValidEmail(email)) return setModalErr("Niepoprawny format adresu email (brak @ lub domeny).");
+        if (password.length < 6) return setModalErr("Hasło jest zbyt krótkie (wymagane min. 6 znaków).");
 
         setAdding(true);
         setModalErr(null);
@@ -337,9 +342,10 @@ function AdminUsersPanel() {
         const username = editUsername.trim();
         const password = editPass;
 
-        if (!email.includes("@")) return setEditErr("Podaj poprawny email");
+        if (!email) return setEditErr("Adres email jest wymagany.");
+        if (!isValidEmail(email)) return setEditErr("Niepoprawny format adresu email.");
         if (password && password.length > 0 && password.length < 6) {
-            return setEditErr("Hasło musi mieć min. 6 znaków (albo zostaw puste, żeby nie zmieniać).");
+            return setEditErr("Nowe hasło jest zbyt krótkie (wymagane min. 6 znaków).");
         }
 
         setEditSaving(true);
@@ -400,7 +406,7 @@ function AdminUsersPanel() {
                 <span className="hint-inline">Adminów: {adminCount}</span>
             </div>
 
-            {}
+            { }
             <Modal open={modalOpen} title="Dodaj nowego użytkownika" onClose={closeModal}>
                 <form onSubmit={handleAddUser}>
                     <div className="game-order-row">
@@ -414,6 +420,11 @@ function AdminUsersPanel() {
                                 required
                             />
                         </label>
+                        {newEmail.trim() && !isValidEmail(newEmail.trim()) && (
+                            <div style={{ color: "#ff6b6b", fontSize: "0.85rem", marginTop: "0.25rem" }}>
+                                Niepoprawny format adresu email (brak @ lub domeny).
+                            </div>
+                        )}
                     </div>
 
                     <div className="game-order-row" style={{ marginTop: "0.4rem" }}>
@@ -427,6 +438,11 @@ function AdminUsersPanel() {
                                 required
                             />
                         </label>
+                        {newPass.length > 0 && newPass.length < 6 && (
+                            <div style={{ color: "#ff6b6b", fontSize: "0.85rem", marginTop: "0.25rem" }}>
+                                Hasło jest zbyt krótkie (wymagane min. 6 znaków).
+                            </div>
+                        )}
                     </div>
 
                     <div className="game-order-row" style={{ marginTop: "0.4rem" }}>
@@ -458,7 +474,7 @@ function AdminUsersPanel() {
                 </form>
             </Modal>
 
-            {}
+            { }
             <Modal
                 open={editOpen}
                 title={editTarget ? `Edytuj użytkownika: ${editTarget.email}` : "Edytuj użytkownika"}
@@ -476,6 +492,11 @@ function AdminUsersPanel() {
                                 required
                             />
                         </label>
+                        {editEmail.trim() && !isValidEmail(editEmail.trim()) && (
+                            <div style={{ color: "#ff6b6b", fontSize: "0.85rem", marginTop: "0.25rem" }}>
+                                Niepoprawny format adresu email.
+                            </div>
+                        )}
                     </div>
 
                     <div className="game-order-row" style={{ marginTop: "0.4rem" }}>
@@ -500,6 +521,11 @@ function AdminUsersPanel() {
                                 placeholder="zostaw puste, żeby nie zmieniać"
                             />
                         </label>
+                        {editPass.length > 0 && editPass.length < 6 && (
+                            <div style={{ color: "#ff6b6b", fontSize: "0.85rem", marginTop: "0.25rem" }}>
+                                Nowe hasło jest zbyt krótkie (wymagane min. 6 znaków).
+                            </div>
+                        )}
                     </div>
 
                     {editErr && (
@@ -525,71 +551,71 @@ function AdminUsersPanel() {
                 <div className="admin-users-table-wrapper" style={{ overflowX: "auto" }}>
                     <table className="admin-users-table" style={{ width: "100%", borderCollapse: "collapse" }}>
                         <thead>
-                        <tr>
-                            <th style={{ textAlign: "left", padding: "0.5rem" }}>Email</th>
-                            <th style={{ textAlign: "left", padding: "0.5rem" }}>Nazwa</th>
-                            <th style={{ textAlign: "left", padding: "0.5rem" }}>Admin</th>
-                            <th style={{ textAlign: "left", padding: "0.5rem" }}>Utworzony</th>
-                            <th style={{ textAlign: "left", padding: "0.5rem" }}>Akcje</th>
-                        </tr>
+                            <tr>
+                                <th style={{ textAlign: "left", padding: "0.5rem" }}>Email</th>
+                                <th style={{ textAlign: "left", padding: "0.5rem" }}>Nazwa</th>
+                                <th style={{ textAlign: "left", padding: "0.5rem" }}>Admin</th>
+                                <th style={{ textAlign: "left", padding: "0.5rem" }}>Utworzony</th>
+                                <th style={{ textAlign: "left", padding: "0.5rem" }}>Akcje</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {users.map((u) => {
-                            const isSelf = u.id === user.id;
-                            const isRowAdmin = !!u.is_admin;
+                            {users.map((u) => {
+                                const isSelf = u.id === user.id;
+                                const isRowAdmin = !!u.is_admin;
 
-                            const disableToggle = isSelf || (isRowAdmin && adminCount <= 1);
-                            const disableDelete = isSelf || (isRowAdmin && adminCount <= 1);
+                                const disableToggle = isSelf || (isRowAdmin && adminCount <= 1);
+                                const disableDelete = isSelf || (isRowAdmin && adminCount <= 1);
 
-                            const rowBusy = changingId === u.id;
+                                const rowBusy = changingId === u.id;
 
-                            return (
-                                <tr key={u.id} style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
-                                    <td style={{ padding: "0.5rem" }}>{u.email}</td>
-                                    <td style={{ padding: "0.5rem" }}>{u.username || "-"}</td>
-                                    <td style={{ padding: "0.5rem" }}>{isRowAdmin ? "✔️" : ""}</td>
-                                    <td style={{ padding: "0.5rem" }}>{fmtDate(u.created_at)}</td>
-                                    <td style={{ padding: "0.5rem" }}>
-                                        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                                            <button
-                                                type="button"
-                                                onClick={() => openEditModal(u)}
-                                                disabled={rowBusy}
-                                                title="Edytuj dane użytkownika"
-                                            >
-                                                {rowBusy ? "..." : "Edytuj"}
-                                            </button>
+                                return (
+                                    <tr key={u.id} style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
+                                        <td style={{ padding: "0.5rem" }}>{u.email}</td>
+                                        <td style={{ padding: "0.5rem" }}>{u.username || "-"}</td>
+                                        <td style={{ padding: "0.5rem" }}>{isRowAdmin ? "✔️" : ""}</td>
+                                        <td style={{ padding: "0.5rem" }}>{fmtDate(u.created_at)}</td>
+                                        <td style={{ padding: "0.5rem" }}>
+                                            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => openEditModal(u)}
+                                                    disabled={rowBusy}
+                                                    title="Edytuj dane użytkownika"
+                                                >
+                                                    {rowBusy ? "..." : "Edytuj"}
+                                                </button>
 
-                                            {isSelf ? (
-                                                <span style={{ alignSelf: "center", opacity: 0.8 }}>to Ty</span>
-                                            ) : (
-                                                <>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleToggleAdmin(u)}
-                                                        disabled={disableToggle || rowBusy}
-                                                    >
-                                                        {rowBusy
-                                                            ? "Zapisywanie..."
-                                                            : isRowAdmin
-                                                                ? "Odbierz admina"
-                                                                : "Nadaj admina"}
-                                                    </button>
+                                                {isSelf ? (
+                                                    <span style={{ alignSelf: "center", opacity: 0.8 }}>to Ty</span>
+                                                ) : (
+                                                    <>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleToggleAdmin(u)}
+                                                            disabled={disableToggle || rowBusy}
+                                                        >
+                                                            {rowBusy
+                                                                ? "Zapisywanie..."
+                                                                : isRowAdmin
+                                                                    ? "Odbierz admina"
+                                                                    : "Nadaj admina"}
+                                                        </button>
 
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => handleDeleteUser(u)}
-                                                        disabled={disableDelete || rowBusy}
-                                                    >
-                                                        {rowBusy ? "..." : "Usuń"}
-                                                    </button>
-                                                </>
-                                            )}
-                                        </div>
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleDeleteUser(u)}
+                                                            disabled={disableDelete || rowBusy}
+                                                        >
+                                                            {rowBusy ? "..." : "Usuń"}
+                                                        </button>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

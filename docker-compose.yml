@@ -1,11 +1,19 @@
 services:
   db:
-    image: postgres:16
+    image: postgres:16-alpine
     container_name: local_postgres
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: app
       POSTGRES_DB: appdb
+      # Reduce memory usage for development
+      POSTGRES_INITDB_ARGS: "-E UTF8"
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=128MB"
+      - "-c"
+      - "max_connections=50"
     ports:
       - "5432:5432"
     volumes:
