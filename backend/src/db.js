@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 
-const remoteUrl = process.env.DATABASE_URL;        // Aiven / produkcyjna
-const localUrl = process.env.LOCAL_DATABASE_URL;   // lokalna
+const remoteUrl = process.env.DATABASE_URL;
+const localUrl = process.env.LOCAL_DATABASE_URL;
 const DB_MODE = String(process.env.DB_MODE || (remoteUrl ? "remote" : "local")).toLowerCase();
 
 if (!remoteUrl) console.warn("[db] Brak DATABASE_URL (REMOTE).");

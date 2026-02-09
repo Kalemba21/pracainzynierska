@@ -165,14 +165,14 @@ router.get("/quote", async (req, res) => {
         return handleFinnhubError(err, res, "/api/quote (Stooq brak danych)");
       }
 
-      const last = rows[rows.length - 1]; // ostatni dzień notowań
+      const last = rows[rows.length - 1];
 
       const stooqQuote = {
         c: last.Close ? Number(last.Close) : null,
         o: last.Open ? Number(last.Open) : null,
         h: last.High ? Number(last.High) : null,
         l: last.Low ? Number(last.Low) : null,
-        pc: null, // brak "poprzedniego zamknięcia" wprost
+        pc: null,
         date: last.Date,
         source: "stooq",
         cache: false,

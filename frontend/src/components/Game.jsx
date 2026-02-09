@@ -767,7 +767,7 @@ function Game() {
         } else {
             const sumShares = Object.values(nextPositions).reduce((acc, q) => acc + (q || 0), 0);
 
-            // Sprawdź czy gracz może kupić choćby jedną akcję którejkolwiek spółki
+
             const availablePrices = Object.values(priceMap).filter(
                 (p) => Number.isFinite(p) && p > 0
             );
@@ -778,7 +778,7 @@ function Game() {
                 setStatus("lost");
                 setMessage("💀 Kapitał wyzerowany i brak jakichkolwiek akcji w portfelu – gra przegrana.");
             } else if (sumShares === 0 && !canAffordAnyShare && nextCash < minPrice) {
-                // Gracz nie ma żadnych akcji i nie stać go na najtańszą spółkę
+
                 setStatus("lost");
                 setMessage(
                     `💀 Przegrana! Nie posiadasz żadnych akcji, a Twój kapitał (${formatMoney(nextCash)} PLN) nie wystarcza na zakup nawet jednej akcji najtańszej spółki (${formatMoney(minPrice)} PLN).`

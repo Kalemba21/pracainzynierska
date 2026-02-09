@@ -26,7 +26,7 @@ router.post("/history", authRequired, async (req, res) => {
             trades,
             eventHistory,
             dayLog,
-            priceHistory, // ✅ DODANE
+            priceHistory,
         } = req.body || {};
 
         const safeStatus = String(status || "").toLowerCase();
@@ -47,7 +47,7 @@ router.post("/history", authRequired, async (req, res) => {
             trades: Array.isArray(trades) ? trades : [],
             eventHistory: Array.isArray(eventHistory) ? eventHistory : [],
             dayLog: Array.isArray(dayLog) ? dayLog : [],
-            priceHistory: safePriceHistory, // ✅ DODANE
+            priceHistory: safePriceHistory,
         };
 
         const q = `

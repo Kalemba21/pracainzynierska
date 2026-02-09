@@ -111,7 +111,7 @@ export default function GameHistorySummary() {
             <h2>Historia ostatnich gier (z bazy)</h2>
 
             {!token && <p className="hint">Musisz być zalogowany.</p>}
-            {loading && <div className="auth-info">Ładowanie historii…</div>}
+            {loading && <div lassName="auth-info">Ładowanie historii…</div>}
             {error && <div className="error">{error}</div>}
 
             {!loading && !error && items.length === 0 && (
@@ -120,7 +120,7 @@ export default function GameHistorySummary() {
 
             {!loading && !error && items.length > 0 && (
                 <>
-                    {/* Statistics Summary */}
+                    { }
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "0.75rem", marginBottom: "1rem" }}>
                         <div style={{ padding: "0.75rem", background: "radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.94))", borderRadius: "0.8rem", border: "1px solid rgba(55, 65, 81, 0.9)" }}>
                             <div style={{ fontSize: "0.75rem", color: "#9ca3af", marginBottom: "0.25rem" }}>Liczba gier</div>
@@ -143,7 +143,7 @@ export default function GameHistorySummary() {
                         </div>
                     </div>
 
-                    {/* Filter Buttons */}
+                    { }
                     <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
                         <button onClick={() => setStatusFilter("all")} style={{ padding: "0.4rem 0.9rem", borderRadius: "999px", border: statusFilter === "all" ? "1px solid #22c55e" : "1px solid rgba(75, 85, 99, 0.9)", background: statusFilter === "all" ? "radial-gradient(circle at top left, rgba(22, 163, 74, 0.45), rgba(15, 23, 42, 0.96))" : "linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.96))", color: "#e5e7eb", fontSize: "0.8rem", cursor: "pointer", fontWeight: statusFilter === "all" ? "500" : "400" }}>
                             Wszystkie ({stats.total})

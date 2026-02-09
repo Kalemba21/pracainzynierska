@@ -16,7 +16,7 @@ router.post("/next-price-gjr", async (req, res) => {
                 error: "Nieprawidłowe dane wejściowe",
             });
         }
-        const closes = []; // <= PODMIEŃ jeśli masz
+        const closes = [];
 
         const model = simulateNextPriceGjr(closes, priceNum, mode);
         let nextPrice = model?.nextPrice ?? null;
@@ -48,7 +48,7 @@ router.post("/history", authRequired, async (req, res) => {
         }
 
         const body = req.body || {};
-        const status = String(body.status || "").trim(); // won/lost/abandoned
+        const status = String(body.status || "").trim();
         const days = Number(body.days ?? body.days_played ?? 0);
         const total = Number(body.total ?? body.final_value ?? 0);
         const pnl = body.pnl == null ? null : Number(body.pnl);

@@ -13,7 +13,7 @@ function createToken(user) {
         email: user.email,
         username: user.username,
         isAdmin: !!user.isAdmin,
-        bootId: BOOT_ID, // wazne: po restarcie backendu stare tokeny staja sie niewazne
+        bootId: BOOT_ID,
     };
 
     return jwt.sign(payload, getJwtSecret(), {
@@ -41,7 +41,7 @@ router.post("/register", async (req, res) => {
             email: trimmedEmail,
             username: trimmedUsername,
             passwordHash,
-            isAdmin: false, // zwykly user
+            isAdmin: false,
         });
 
         const token = createToken(user);

@@ -272,7 +272,7 @@ function MultiLineChart({ stockData }) {
                     ))}
                 </defs>
 
-                {/* Zero Line */}
+                { }
                 <line
                     x1={pad} y1={toY(0)}
                     x2={svgW - pad} y2={toY(0)}
@@ -281,14 +281,14 @@ function MultiLineChart({ stockData }) {
                     strokeDasharray="4 4"
                 />
 
-                {/* Y Axis Labels */}
+                { }
                 {[minY, 0, maxY].map((v, i) => (
                     <text key={i} x={svgW - pad + 6} y={toY(v)} fill="#64748b" fontSize="9" alignmentBaseline="middle">
                         {v > 0 ? "+" : ""}{v.toFixed(0)}%
                     </text>
                 ))}
 
-                {/* Lines with Glow */}
+                { }
                 {normalizedData.map((stock, idx) => {
                     if (!stock.normPoints.length) return null;
                     const path = stock.normPoints.map((p, i) =>
@@ -312,7 +312,7 @@ function MultiLineChart({ stockData }) {
                 })}
 
 
-                {/* Hover Cursor */}
+                { }
                 {validHover && (
                     <line
                         x1={toX(hoverIndex)} y1={pad}
@@ -322,7 +322,7 @@ function MultiLineChart({ stockData }) {
                     />
                 )}
 
-                {/* Hover Dots */}
+                { }
                 {validHover && normalizedData.map((stock, idx) => {
                     const pt = stock.normPoints[hoverIndex];
                     if (!pt) return null;
@@ -340,7 +340,7 @@ function MultiLineChart({ stockData }) {
                 })}
             </svg>
 
-            {/* Tooltip Overlay */}
+            { }
             {validHover && (
                 <div style={{
                     position: "absolute",
@@ -385,7 +385,7 @@ function MultiLineChart({ stockData }) {
                 </div>
             )}
 
-            {/* Legend */}
+            { }
             <div style={{
                 display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "0.5rem",
                 justifyContent: "center", fontSize: "0.75rem", paddingTop: "0.8rem",
@@ -651,7 +651,7 @@ export default function GameQuickSummary({
                 <div className="gqs2__body" style={{ animation: "gqs2FadeIn 0.3s ease-out" }}>
                     <SimpleLineChart points={points} />
 
-                    {/* Statistics Cards */}
+                    { }
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "0.75rem", marginTop: "1rem", marginBottom: "1rem" }}>
                         <div style={{ padding: "0.65rem", background: "radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.94))", borderRadius: "0.7rem", border: "1px solid rgba(55, 65, 81, 0.9)" }}>
                             <div style={{ fontSize: "0.7rem", color: "#9ca3af", marginBottom: "0.2rem" }}>Transakcje</div>
@@ -672,7 +672,7 @@ export default function GameQuickSummary({
                         </div>
                     </div>
 
-                    {/* Tab Navigation */}
+                    { }
                     <div style={{ display: "flex", gap: "0.4rem", marginBottom: "0.75rem", borderBottom: "1px solid rgba(55, 65, 81, 0.7)", paddingBottom: "0.5rem" }}>
                         <button
                             onClick={() => setActiveTab("trades")}
@@ -746,10 +746,10 @@ export default function GameQuickSummary({
                         )}
                     </div>
 
-                    {/* Trades Tab */}
+                    { }
                     {activeTab === "trades" && (
                         <div>
-                            {/* Trade Filter */}
+                            { }
                             <div style={{ display: "flex", gap: "0.4rem", marginBottom: "0.6rem", flexWrap: "wrap" }}>
                                 <button onClick={() => setTradeFilter("all")} style={{ padding: "0.3rem 0.75rem", borderRadius: "999px", border: tradeFilter === "all" ? "1px solid #22c55e" : "1px solid rgba(75, 85, 99, 0.9)", background: tradeFilter === "all" ? "rgba(22, 163, 74, 0.2)" : "rgba(15, 23, 42, 0.96)", color: "#e5e7eb", fontSize: "0.75rem", cursor: "pointer" }}>
                                     Wszystkie ({lastTrades.length})
@@ -814,7 +814,7 @@ export default function GameQuickSummary({
                         </div>
                     )}
 
-                    {/* Events Tab */}
+                    { }
                     {activeTab === "events" && (
                         <div className="gqs2__card">
                             <div className="gqs2__scroll gqs2__scroll--210">
@@ -862,7 +862,7 @@ export default function GameQuickSummary({
                         </div>
                     )}
 
-                    {/* Logs Tab */}
+                    { }
                     {activeTab === "logs" && (
                         <div className="gqs2__card gqs2__logsCard">
                             <div className="gqs2__scroll gqs2__scroll--220">
@@ -880,7 +880,7 @@ export default function GameQuickSummary({
                         </div>
                     )}
 
-                    {/* Comparison Tab */}
+                    { }
                     {activeTab === "comparison" && (
                         <div style={{ padding: "1rem 0" }}>
                             <div style={{
