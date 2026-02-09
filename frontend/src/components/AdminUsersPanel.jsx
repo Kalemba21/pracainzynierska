@@ -355,7 +355,7 @@ function AdminUsersPanel() {
         try {
             const payload = {
                 email,
-                username: username || null, // możesz ustalić: null = usuń nazwę / backend może to zignorować
+                username: username || null,
                 ...(password && password.length ? { password } : {}),
             };
 

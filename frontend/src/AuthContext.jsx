@@ -42,7 +42,7 @@ function normalizeUser(u) {
     const isAdmin = !!(u.is_admin || u.isAdmin || u.role === "admin");
     return {
         ...u,
-        isAdmin, // <-- KLUCZOWE: zawsze dostępne po stronie frontu
+        isAdmin,
     };
 }
 
@@ -98,7 +98,7 @@ export function AuthProvider({ children }) {
             if (savedUser) {
                 try {
                     const parsed = JSON.parse(savedUser);
-                    setUser(normalizeUser(parsed)); // ✅ normalizacja przy starcie
+                    setUser(normalizeUser(parsed));
                 } catch {
                     localStorage.removeItem(LS_USER);
                 }
@@ -165,7 +165,7 @@ export function AuthProvider({ children }) {
         try {
             const res = await axios.post(`${API_BASE}/api/auth/login`, { email, password });
 
-            setUser(normalizeUser(res.data.user)); // ✅ normalizacja po logowaniu
+            setUser(normalizeUser(res.data.user));
             setToken(res.data.token);
 
             localStorage.setItem(LS_SESSION_FRONT, FRONT_BOOT_ID);
@@ -190,7 +190,7 @@ export function AuthProvider({ children }) {
         try {
             const res = await axios.post(`${API_BASE}/api/auth/register`, { email, password, username });
 
-            setUser(normalizeUser(res.data.user)); // ✅ normalizacja po rejestracji
+            setUser(normalizeUser(res.data.user));
             setToken(res.data.token);
 
             localStorage.setItem(LS_SESSION_FRONT, FRONT_BOOT_ID);

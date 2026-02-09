@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: app
       POSTGRES_DB: appdb
-      # Reduce memory usage for development
+
       POSTGRES_INITDB_ARGS: "-E UTF8"
     command:
       - "postgres"

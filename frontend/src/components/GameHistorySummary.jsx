@@ -32,7 +32,7 @@ export default function GameHistorySummary() {
     const [qsOpen, setQsOpen] = useState(false);
     const [qsData, setQsData] = useState(null);
 
-    const [statusFilter, setStatusFilter] = useState("all"); // all, won, lost, abandoned
+    const [statusFilter, setStatusFilter] = useState("all");
 
     useEffect(() => {
         if (!token) {
@@ -59,13 +59,13 @@ export default function GameHistorySummary() {
             .finally(() => setLoading(false));
     }, [token]);
 
-    // Filter items based on status
+
     const filteredItems = items.filter(item => {
         if (statusFilter === "all") return true;
         return item.status === statusFilter;
     });
 
-    // Calculate statistics
+
     const stats = {
         total: items.length,
         won: items.filter(g => g.status === "won").length,

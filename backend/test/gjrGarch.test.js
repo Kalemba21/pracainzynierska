@@ -23,7 +23,7 @@ function withMockedRandom(sequence, fn) {
 
 test("simulateNextPriceGjr: zwraca null dla zlych danych", () => {
   assert.equal(simulateNextPriceGjr([], 100), null);
-  assert.equal(simulateNextPriceGjr([1, 2, 3], 100), null); // za malo close
+  assert.equal(simulateNextPriceGjr([1, 2, 3], 100), null);
   assert.equal(simulateNextPriceGjr(new Array(30).fill(1), 0), null);
   assert.equal(simulateNextPriceGjr(new Array(30).fill(1), "abc"), null);
 });

@@ -160,14 +160,14 @@ function SimpleLineChart({ points }) {
     );
 }
 
-// Multi-line chart for comparison with normalization and tooltip
+
 function MultiLineChart({ stockData }) {
     const [hoverX, setHoverX] = useState(null);
     const pad = 24;
     const svgW = 640;
     const svgH = 260;
 
-    // Neon/Glow colors
+
     const COLORS = [
         '#4ade80', // green-400
         '#60a5fa', // blue-400
@@ -179,7 +179,7 @@ function MultiLineChart({ stockData }) {
         '#a3e635', // lime-400
     ];
 
-    // Normalize points to percentage change from start (p0 = 0%)
+
     const normalizedData = useMemo(() => {
         if (!stockData?.length) return [];
         return stockData.map((stock, i) => {
@@ -188,8 +188,8 @@ function MultiLineChart({ stockData }) {
 
             const startPrice = points[0].y;
             const normPoints = points.map((p, idx) => ({
-                ...p, // keep original x, y
-                x: idx, // ensure x is index
+                ...p,
+                x: idx,
                 originalY: p.y,
                 y: startPrice !== 0 ? ((p.y - startPrice) / startPrice) * 100 : 0
             }));
@@ -201,7 +201,7 @@ function MultiLineChart({ stockData }) {
     const { minY, maxY, maxLen } = useMemo(() => {
         if (!normalizedData.length) return { minY: -5, maxY: 5, maxLen: 0 };
 
-        let mn = 0; // Always include 0 line
+        let mn = 0;
         let mx = 0;
         let len = 0;
 
@@ -419,7 +419,7 @@ export default function GameQuickSummary({
     dayLog = [],
     priceHistory = {},
 
-    triggerPlacement = "fab", // "fab" | "inline"
+    triggerPlacement = "fab",
     triggerLabel = "Podgląd",
 }) {
     const symbols = useMemo(() => Object.keys(priceHistory || {}).sort(), [priceHistory]);
@@ -444,7 +444,7 @@ export default function GameQuickSummary({
     const lastTrades = useMemo(() => {
         const arr = Array.isArray(trades) ? [...trades] : [];
 
-        // Find symbols that have both BUY and SELL transactions (completed trades)
+
         const symbolStats = {};
         arr.forEach(t => {
             const sym = t.symbol;
@@ -459,7 +459,7 @@ export default function GameQuickSummary({
                 .map(([sym, _]) => sym)
         );
 
-        // Sort: completed trades first, then by ID descending
+
         return arr
             .sort((a, b) => {
                 const aCompleted = completedSymbols.has(a.symbol);
@@ -482,7 +482,6 @@ export default function GameQuickSummary({
         });
     }, [lastTrades, tradeFilter]);
 
-    // Calculate statistics
     const stats = useMemo(() => {
         const allTrades = Array.isArray(trades) ? trades : [];
         const buyTrades = allTrades.filter(t => t.side === "BUY");
@@ -513,7 +512,7 @@ export default function GameQuickSummary({
         };
     }, [trades]);
 
-    // Track which symbols have been purchased (have BUY transactions)
+
     const purchasedSymbols = useMemo(() => {
         const arr = Array.isArray(trades) ? trades : [];
         const purchased = new Set();
@@ -523,12 +522,12 @@ export default function GameQuickSummary({
         return purchased;
     }, [trades]);
 
-    // Prepare data for comparison chart
+
     const comparisonData = useMemo(() => {
         const COLORS = ['#22c55e', '#3b82f6', '#a855f7', '#f59e0b', '#ef4444', '#06b6d4', '#ec4899', '#84cc16'];
         const purchased = Array.from(purchasedSymbols);
         return purchased.map((symbol, idx) => {
-            // Normalize symbol to uppercase to match priceHistory keys
+
             const lookupSymbol = symbol.toUpperCase();
             const history = priceHistory[lookupSymbol] || priceHistory[symbol] || [];
 
